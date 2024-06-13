@@ -87,6 +87,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Create .exe file
+        run: cd myceliumd && cargo build --release && cd ..
+
       - name: Setup .NET Core SDK
         run: actions/setup-dotnet@v4.0.0
 
