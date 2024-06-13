@@ -79,3 +79,34 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Specify manifest since we are in a subdirectory
           manifest-path: myceliumd-private/Cargo.toml
+
+  build-msi:
+    needs: create-release
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Core SDK
+        run: actions/setup-dotnet@v4.0.0
+
+      - name: Install WiX Toolset
+        run: dotnet tool install --global wix
+
+      - name: Build MSI package
+        run: wix build -loc wix\mycelium.en-us.wxl wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
+
+      - name: Upload MSI artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: mycelium_installer
+          path: mycelium_installer.msi
+
+      - name: Upload MSI to GitHub Release
+        uses: actions/upload-release-asset@v3
+        with:
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: mycelium_installer.msi
+          asset_name: mycelium_installer.msi
+          asset_content_type: application/x-msi
+          token: ${{ secrets.GITHUB_TOKEN }}
