@@ -97,16 +97,7 @@ jobs:
         run: wix build -loc wix\mycelium.en-us.wxl wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
 
       - name: Upload MSI artifact
-        uses: actions/upload-artifact@v0.4.1
+        uses: actions/upload-artifact@v4.3.3
         with:
-          name: mycelium_installer
-          path: mycelium_installer.msi
-
-      - name: Upload MSI to GitHub Release
-        uses: actions/upload-release-asset@v3
-        with:
-          upload_url: ${{ needs.create-release.outputs.upload_url }}
-          asset_path: mycelium_installer.msi
-          asset_name: mycelium_installer.msi
-          asset_content_type: application/x-msi
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: mycelium_installer_x86-64.msi
+          path: myceliumd\mycelium_installer.msi
