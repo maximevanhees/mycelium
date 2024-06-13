@@ -97,7 +97,7 @@ jobs:
         run: wix build -loc wix\mycelium.en-us.wxl wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
 
       - name: Upload MSI artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v0.4.1
         with:
           name: mycelium_installer
           path: mycelium_installer.msi
