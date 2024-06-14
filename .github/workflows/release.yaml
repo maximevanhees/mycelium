@@ -88,6 +88,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: print current folder
+        run: pwd
+
       - name: Create .exe file
         run: cd myceliumd && cargo build --release && cd ..
 
