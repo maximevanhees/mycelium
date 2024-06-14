@@ -107,7 +107,7 @@ jobs:
         run: pwd
 
       - name: Build MSI package
-        run: wix build -loc myceliumd\wix\mycelium.en-us.wxl myceliumd\wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
+        run: wix build -loc ..\myceliumd\wix\mycelium.en-us.wxl ..\myceliumd\wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
 
       - name: Upload MSI artifact
         uses: alexellis/upload-assets@0.4.0
