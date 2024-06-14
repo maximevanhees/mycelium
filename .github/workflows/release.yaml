@@ -84,6 +84,7 @@ jobs:
     needs: create-release
     runs-on: windows-latest
     steps:
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -91,10 +92,13 @@ jobs:
         run: cd myceliumd && cargo build --release && cd ..
 
       - name: Setup .NET Core SDK
-        run: actions/setup-dotnet@v4.0.0
+        uses: actions/setup-dotnet@v4.0.0
 
       - name: Install WiX Toolset
         run: dotnet tool install --global wix
+
+      - name: Add WixToolset.UI.wixext extension
+        run: wix extension add WixToolset.UI.wixext
 
       - name: Build MSI package
         run: wix build -loc wix\mycelium.en-us.wxl wix\mycelium.wxs -ext WixToolset.UI.wixext -arch x64 -dcl high -out mycelium_installer.msi
