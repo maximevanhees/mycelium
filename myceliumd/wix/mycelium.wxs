@@ -22,7 +22,7 @@
             <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER"/>
         </UI>            
 
-        <WixVariable Id="WixUILicenseRtf" Value="../LICENSE.rtf"/>
+        <WixVariable Id="WixUILicenseRtf" Value="..\..\LICENSE.rtf"/>
     </Package>
 
     <Fragment>
@@ -34,7 +34,7 @@
                 > 
                 <File 
                     Id="mycelium_exe" 
-                    Source="myceliumd\target\release\mycelium.exe" 
+                    Source="..\target\release\mycelium.exe" 
                     KeyPath="yes" 
                     Vital="yes" />
                 <ServiceInstall 
@@ -63,7 +63,7 @@
                 > 
                 <File 
                     Id="wintun_dll" 
-                    Source="myceliumd\wintun.dll" 
+                    Source="..\wintun.dll" 
                     KeyPath="yes" 
                     Vital="yes" />
             </Component>
