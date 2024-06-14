@@ -34,7 +34,7 @@
                 > 
                 <File 
                     Id="mycelium_exe" 
-                    Source="target\release\mycelium.exe" 
+                    Source="myceliumd\target\release\mycelium.exe" 
                     KeyPath="yes" 
                     Vital="yes" />
                 <ServiceInstall 
@@ -63,7 +63,7 @@
                 > 
                 <File 
                     Id="wintun_dll" 
-                    Source="wintun.dll" 
+                    Source="myceliumd\wintun.dll" 
                     KeyPath="yes" 
                     Vital="yes" />
             </Component>
