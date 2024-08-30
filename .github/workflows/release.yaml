@@ -88,11 +88,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set env. var for static CRT linkage
-        run: echo "RUSTFLAGS=-C target-feature=+crt-static" >> "$GITHUB_ENV"
-
       - name: Create .exe file
-        run: cd myceliumd && cargo build --release && cd ..
+        shell: bash
+        run: cd myceliumd && RUSTFLAGS="-Ctarget-feature=+crt-static" cargo build --release && cd ..
 
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4.0.0
